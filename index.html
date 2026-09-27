@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- Sin esta línea NO cumplís "sin escalamiento inicial" (sección 3 de la consigna) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Formato pedido: Apellido Nombre — COMISIÓN - AÑO -->
+  <title>[APELLIDO] [NOMBRE] — [COMISIÓN] - 2026</title>
+
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <!-- ===== HEADER (igual en las 3 páginas) ===== -->
+  <header class="header">
+    <a href="./index.html" class="header__logo">
+      <!-- Reemplazar por tu logo original -->
+      <img src="./img/logo.svg" alt="[NOMBRE DEL SITIO] - Ir al inicio" width="48" height="48">
+    </a>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <ul class="nav__lista">
+        <li><a href="./index.html" aria-current="page">Inicio</a></li>
+        <li><a href="./favoritos.html">Favoritos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <h1>Personajes de Rick and Morty</h1>
+
+    <!-- ===== BUSCADOR ===== -->
+    <section class="buscador" aria-labelledby="titulo-buscador">
+      <h2 id="titulo-buscador">Buscar personaje</h2>
+      <form id="form-busqueda" class="buscador__form" role="search">
+        <label for="input-busqueda">Nombre del personaje</label>
+        <input type="search" id="input-busqueda" name="nombre" placeholder="Ej: Morty" autocomplete="off">
+        <button type="submit">Buscar</button>
+      </form>
+    </section>
+
+    <!-- ===== MENSAJES DE ESTADO =====
+         JS escribe acá "Cargando...", errores o "Sin resultados".
+         aria-live="polite" hace que un lector de pantalla anuncie el cambio. -->
+    <div id="estado" class="estado" aria-live="polite"></div>
+
+    <!-- ===== LISTADO ===== -->
+    <section class="listado" aria-labelledby="titulo-listado">
+      <h2 id="titulo-listado">Personajes</h2>
+      <!-- Es una lista de ítems → <ul>. JS inserta cada tarjeta como <li><article>...</article></li> -->
+      <ul id="lista-personajes" class="grilla"></ul>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER (igual en las 3 páginas) ===== -->
+  <footer class="footer">
+    <p>[NOMBRE] [APELLIDO] — Aplicaciones Web Progresivas</p>
+    <p>Turno [TURNO] · Comisión [COMISIÓN] · 2026</p>
+  </footer>
+
+  <!-- type="module" permite usar import/export entre archivos JS.
+       OJO: con módulos, el sitio TIENE que abrirse con Live Server (http://), no con doble clic (file://) -->
+  <script type="module" src="./js/inicio.js"></script>
+</body>
+</html>

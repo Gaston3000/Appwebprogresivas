@@ -1,0 +1,2 @@
+Acá va tu logo original: logo.svg (recomendado) o logo.png.
+Borrá este archivo antes de entregar.
