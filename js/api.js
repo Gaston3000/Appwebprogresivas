@@ -8,12 +8,18 @@
 // ojo: si la busqueda no encuentra nada la api tira 404, eso no es error de conexion,
 // es que no hay resultados. y fetch no cae en el catch con un 404, hay que mirar response.ok
 
+import { leerCache, guardarCache } from './storage.js';
+
 const URL_BASE = 'https://rickandmortyapi.com/api/character';
 
 
 // trae la primera pagina de personajes
 export async function obtenerPersonajes() {
-  // TODO (extra): antes fijarse si ya estan guardados en localStorage
+  // si ya los traje antes los saco del localStorage y no llamo a la api
+  const cache = leerCache();
+  if (cache) {
+    return cache;
+  }
 
   const response = await fetch(URL_BASE);
 
@@ -23,17 +29,40 @@ export async function obtenerPersonajes() {
   }
 
   const data = await response.json();
+  guardarCache(data.results);
   return data.results; // results es el array de 20 personajes, lo demas es info de paginas
 }
 
 
 // busca por nombre, si no encuentra devuelve []
 export async function buscarPersonajes(texto) {
-  // TODO: armar url con ?name= (usar encodeURIComponent), si da 404 devolver []
+  // encodeURIComponent por si escriben espacios o caracteres raros
+  const response = await fetch(`${URL_BASE}/?name=${encodeURIComponent(texto)}`);
+
+  if (response.status === 404) {
+    return [];
+  }
+
+  if (!response.ok) {
+    throw new Error(`Error ${response.status} al buscar`);
+  }
+
+  const data = await response.json();
+  return data.results;
 }
 
 
-// trae un personaje por id
+// trae un personaje por id. si no existe devuelve null
 export async function obtenerPersonajePorId(id) {
-  // TODO
+  const response = await fetch(`${URL_BASE}/${id}`);
+
+  if (response.status === 404) {
+    return null;
+  }
+
+  if (!response.ok) {
+    throw new Error(`Error ${response.status} al traer el personaje`);
+  }
+
+  return response.json();
 }

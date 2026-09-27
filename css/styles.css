@@ -380,18 +380,168 @@ a {
   background: var(--gris);
 }
 
-.tarjeta__link {
+/* margin-top auto empuja los botones al fondo de la tarjeta, asi quedan todos alineados */
+.tarjeta__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   margin-top: auto;
-  align-self: flex-start;
+  padding-top: 4px;
+}
+
+.tarjeta__link,
+.tarjeta__quitar {
   padding: 4px 12px;
+  font: inherit;
   font-weight: 700;
+  color: var(--tinta);
   text-decoration: none;
+  background: var(--blanco);
   border: 2px solid var(--tinta);
   border-radius: 999px;
+  cursor: pointer;
 }
 
 .tarjeta__link:hover {
   background: var(--celeste);
+}
+
+.tarjeta__quitar:hover {
+  background: #FFE6DD;
+}
+
+
+/* cabecera del listado: titulo + boton ver todos */
+.listado__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.listado__cabecera h2 {
+  margin-bottom: 0;
+  overflow-wrap: anywhere;
+}
+
+.boton--chico {
+  padding: 6px 16px;
+}
+
+.estado a {
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+
+/* ---------- pagina de detalle ---------- */
+
+.volver {
+  display: inline-block;
+  margin: 24px 0;
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+
+.volver::before {
+  content: '← ';
+}
+
+.detalle:empty {
+  display: none;
+}
+
+.detalle {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  padding: 16px;
+  background: var(--blanco);
+  border: var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+.detalle__foto {
+  width: 100%;
+  max-width: 320px;
+  border: var(--borde);
+  border-radius: var(--radio);
+}
+
+.detalle__nombre {
+  font-size: clamp(2rem, 8vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+}
+
+.detalle__estado {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* lista de datos: nombre del dato a la izquierda y valor a la derecha */
+.datos {
+  margin: 20px 0 0;
+}
+
+.datos div {
+  display: grid;
+  grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 2px dotted rgba(0, 0, 0, 0.3);
+}
+
+.datos dt {
+  font-weight: 700;
+}
+
+.datos dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.detalle__favorito {
+  margin-top: 24px;
+}
+
+/* cuando ya esta guardado el boton pasa a celeste */
+.boton--guardado,
+.boton--guardado:hover {
+  background: var(--celeste);
+}
+
+.detalle__aviso {
+  min-height: 1.5em;
+  margin-top: 12px;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+}
+
+
+/* ---------- pagina de favoritos ---------- */
+
+.favoritos__cabecera {
+  padding: 32px 0 24px;
+}
+
+.favoritos__cabecera h1 {
+  font-size: clamp(2.2rem, 8vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.favoritos__cabecera p {
+  margin-top: 6px;
+  font-size: 1.1rem;
 }
 
 
@@ -449,6 +599,21 @@ a {
     justify-content: space-between;
     padding: 20px 32px;
   }
+
+  /* detalle en dos columnas: foto y datos */
+  .detalle {
+    grid-template-columns: 260px minmax(0, 1fr);
+    align-items: start;
+    padding: 28px;
+  }
+
+  .detalle__foto {
+    max-width: none;
+  }
+
+  .favoritos__cabecera {
+    padding: 48px 0 32px;
+  }
 }
 
 
@@ -474,5 +639,11 @@ a {
   .grilla {
     grid-template-columns: repeat(4, 1fr);
     gap: 28px;
+  }
+
+  .detalle {
+    grid-template-columns: 380px minmax(0, 1fr);
+    gap: 40px;
+    padding: 36px;
   }
 }

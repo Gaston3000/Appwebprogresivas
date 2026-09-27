@@ -1,20 +1,48 @@
 // pagina de favoritos, aca no se llama a la api, todo sale del localStorage
 
-// TODO: imports
+import { obtenerFavoritos, eliminarFavorito } from './storage.js';
+import { renderizarListado, mostrarEstado, limpiarEstado } from './ui.js';
 
 
-// TODO: agarrar elementos
+const lista = document.querySelector('#lista-favoritos');
+const estado = document.querySelector('#estado');
+const contador = document.querySelector('#contador');
 
 
 // muestra los favoritos o el mensaje de que no hay ninguno
 function mostrarFavoritos() {
-  // TODO: cada tarjeta con boton eliminar que tenga data-id
+  const favoritos = obtenerFavoritos();
+
+  if (favoritos.length === 0) {
+    lista.innerHTML = '';
+    contador.textContent = '';
+    mostrarEstado(
+      estado,
+      'Todavía no guardaste ningún personaje. Entrá a la ficha de alguno y tocá "Agregar a favoritos". <a href="./index.html">Ir al inicio</a>',
+      'vacio'
+    );
+    return;
+  }
+
+  contador.textContent = favoritos.length === 1
+    ? 'Tenés 1 personaje guardado.'
+    : `Tenés ${favoritos.length} personajes guardados.`;
+
+  limpiarEstado(estado);
+  renderizarListado(favoritos, lista, true);
 }
 
 
-// eliminar: un solo listener en la lista y me fijo si tocaron un boton de eliminar
-// ojo que el data-id viene como string y el id es numero
-// TODO
+// eliminar: un solo listener en la lista y me fijo si tocaron un boton de quitar
+// (asi no tengo que ponerle un listener a cada boton cada vez que redibujo)
+lista.addEventListener('click', evento => {
+  const boton = evento.target.closest('.tarjeta__quitar');
+  if (!boton) return;
+
+  // el data-id viene como string y el id guardado es numero
+  eliminarFavorito(Number(boton.dataset.id));
+  mostrarFavoritos();
+});
 
 
-// TODO: llamar a mostrarFavoritos()
+mostrarFavoritos();

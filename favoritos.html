@@ -4,21 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Costabella Gastón — DWM3AP - 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="./img/logo.png" type="image/png">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
 
   <header class="header">
-    <!-- TODO: copiar el header del index (aca el aria-current va en Favoritos) -->
+    <a href="./index.html" class="header__logo">
+      <img src="./img/logo.png" alt="" width="44" height="44">
+      <span>MultiversoRickAndMorty</span>
+    </a>
+
+    <nav aria-label="Navegación principal">
+      <ul class="nav">
+        <li><a href="./index.html">Inicio</a></li>
+        <li><a href="./favoritos.html" aria-current="page">Favoritos</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <section>
-      <!-- TODO: h1 de la pagina -->
+  <main class="contenedor">
+    <section class="favoritos" aria-labelledby="titulo-favoritos">
+      <div class="favoritos__cabecera">
+        <h1 id="titulo-favoritos">Tus favoritos</h1>
+        <p id="contador"></p>
+      </div>
 
-      <!-- TODO: mensaje para cuando no hay favoritos guardados -->
+      <!-- mensaje para cuando no hay nada guardado -->
+      <div id="estado" class="estado" aria-live="polite"></div>
 
-      <!-- TODO: lista vacia donde el js mete las tarjetas guardadas (cada una con boton eliminar) -->
+      <!-- las tarjetas guardadas, cada una con su boton de quitar -->
+      <ul id="lista-favoritos" class="grilla"></ul>
     </section>
   </main>
 

@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" rel="stylesheet">
 
+  <link rel="icon" href="./img/logo.png" type="image/png">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
@@ -55,7 +56,11 @@
 
     <!-- listado, las tarjetas las mete el js -->
     <section class="listado" aria-labelledby="titulo-listado">
-      <h2 id="titulo-listado">Personajes</h2>
+      <div class="listado__cabecera">
+        <h2 id="titulo-listado">Personajes</h2>
+        <!-- aparece solo cuando hay una busqueda hecha -->
+        <button type="button" id="ver-todos" class="boton boton--chico" hidden>Ver todos</button>
+      </div>
       <ul id="lista-personajes" class="grilla"></ul>
     </section>
 

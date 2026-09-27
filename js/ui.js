@@ -2,7 +2,7 @@
 
 
 // la api devuelve todo en ingles, esto es para mostrarlo en castellano
-const ESTADOS = {
+export const ESTADOS = {
   Alive: 'Vivo',
   Dead: 'Muerto',
   unknown: 'Desconocido'
@@ -17,13 +17,22 @@ const ESPECIES = {
   unknown: 'Desconocida'
 };
 
+export function traducirEspecie(especie) {
+  return ESPECIES[especie] || especie;
+}
+
 
 // arma la tarjeta de un personaje (foto, nombre, estado, especie y link al detalle)
-export function crearTarjeta(personaje) {
+// en favoritos le paso conEliminar = true para que tenga el boton de quitar
+export function crearTarjeta(personaje, conEliminar = false) {
   const li = document.createElement('li');
 
   // la clase del estado la uso en el css para el color del puntito
   const claseEstado = personaje.status.toLowerCase();
+
+  const botonEliminar = conEliminar
+    ? `<button type="button" class="tarjeta__quitar" data-id="${personaje.id}" aria-label="Quitar a ${personaje.name} de favoritos">Quitar</button>`
+    : '';
 
   li.innerHTML = `
     <article class="tarjeta">
@@ -32,9 +41,12 @@ export function crearTarjeta(personaje) {
         <h3 class="tarjeta__nombre">${personaje.name}</h3>
         <p class="tarjeta__estado">
           <span class="punto punto--${claseEstado}"></span>
-          ${ESTADOS[personaje.status]} · ${ESPECIES[personaje.species] || personaje.species}
+          ${ESTADOS[personaje.status]} · ${traducirEspecie(personaje.species)}
         </p>
-        <a class="tarjeta__link" href="./detalle.html?id=${personaje.id}">Ver ficha</a>
+        <div class="tarjeta__acciones">
+          <a class="tarjeta__link" href="./detalle.html?id=${personaje.id}">Ver ficha</a>
+          ${botonEliminar}
+        </div>
       </div>
     </article>
   `;
@@ -44,12 +56,12 @@ export function crearTarjeta(personaje) {
 
 
 // dibuja todas las tarjetas en el contenedor
-export function renderizarListado(personajes, contenedor) {
+export function renderizarListado(personajes, contenedor, conEliminar = false) {
   // lo vacio primero asi no se acumulan las busquedas
   contenedor.innerHTML = '';
 
   personajes.forEach(personaje => {
-    contenedor.appendChild(crearTarjeta(personaje));
+    contenedor.appendChild(crearTarjeta(personaje, conEliminar));
   });
 }
 
