@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Costabella Gastón — DWM3AP - 2026</title>
+
+  <!-- fuentes de google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
@@ -11,29 +17,37 @@
   <!-- header con logo y menu, se repite en todas las paginas -->
   <header class="header">
     <a href="./index.html" class="header__logo">
-      <img src="./img/logo.png" alt="MultiversoRickAndMorty - Ir al inicio" width="48" height="48">
+      <img src="./img/logo.png" alt="" width="44" height="44">
+      <span>MultiversoRickAndMorty</span>
     </a>
 
-    <nav class="nav" aria-label="Navegación principal">
-      <ul class="nav__lista">
+    <nav aria-label="Navegación principal">
+      <ul class="nav">
         <li><a href="./index.html" aria-current="page">Inicio</a></li>
         <li><a href="./favoritos.html">Favoritos</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <main class="contenedor">
 
-    <h1>Personajes de Rick and Morty</h1>
+    <!-- portada con el titulo y el buscador -->
+    <section class="hero">
+      <div class="hero__texto">
+        <h1>El multiverso de Rick and Morty</h1>
+        <p>Buscá cualquier personaje de la serie, mirá su ficha y guardá tus favoritos.</p>
 
-    <!-- buscador -->
-    <section class="buscador" aria-labelledby="titulo-buscador">
-      <h2 id="titulo-buscador">Buscar personaje</h2>
-      <form id="form-busqueda" class="buscador__form" role="search">
-        <label for="input-busqueda">Nombre del personaje</label>
-        <input type="search" id="input-busqueda" name="nombre" placeholder="Ej: Morty" autocomplete="off">
-        <button type="submit">Buscar</button>
-      </form>
+        <form id="form-busqueda" class="buscador" role="search">
+          <label for="input-busqueda">Buscar personaje</label>
+          <div class="buscador__fila">
+            <input type="search" id="input-busqueda" name="nombre" placeholder="Ej: Morty, Birdperson…" autocomplete="off">
+            <button type="submit" class="boton boton--verde">Buscar</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- el portal es solo decorativo -->
+      <div class="portal" aria-hidden="true"></div>
     </section>
 
     <!-- aca aparecen los mensajes de cargando / error / sin resultados -->

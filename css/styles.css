@@ -2,56 +2,477 @@
 
 
 /* colores y fuentes */
-/* TODO: variables en :root (fondo, texto, acento, fuentes) */
+:root {
+  --celeste: #8FD3F7;
+  --celeste-claro: #EAF6FC;
+  --verde: #97CE4C;
+  --verde-oscuro: #3F7D20;
+  --rojo: #E4572E;
+  --gris: #8A94A0;
+  --tinta: #000;
+  --blanco: #fff;
+
+  --fuente-titulos: 'Bricolage Grotesque', system-ui, sans-serif;
+  --fuente-texto: 'Atkinson Hyperlegible', system-ui, sans-serif;
+
+  /* el contorno negro grueso y la sombra dura imitan el dibujo de la serie */
+  --borde: 3px solid var(--tinta);
+  --sombra: 5px 5px 0 var(--tinta);
+  --radio: 18px;
+}
 
 
 /* reset */
-/* TODO: box-sizing border-box, sacar margin del body, img max-width 100% (sino aparece scroll horizontal) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1, h2, h3, p, ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
 
 /* base */
-/* TODO */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--fuente-texto);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--tinta);
+  background-color: var(--celeste-claro);
+  /* puntitos de fondo, tipo hoja de laboratorio */
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+h1, h2, h3 {
+  font-family: var(--fuente-titulos);
+  line-height: 1.05;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px dashed var(--verde-oscuro);
+  outline-offset: 3px;
+}
+
+.contenedor {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
 
 
 /* header y menu */
-/* TODO */
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--blanco);
+  border-bottom: var(--borde);
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  text-decoration: none;
+  font-family: var(--fuente-titulos);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.header__logo img {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+/* en pantallas muy chicas el nombre largo no entra, lo corto con puntos */
+.header__logo span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  gap: 8px;
+}
+
+.nav a {
+  display: block;
+  padding: 6px 14px;
+  border: var(--borde);
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  background: var(--blanco);
+}
+
+.nav a:hover {
+  background: var(--celeste-claro);
+}
+
+/* la pagina en la que estoy */
+.nav a[aria-current="page"] {
+  background: var(--celeste);
+}
+
+
+/* portada */
+.hero {
+  position: relative;
+  display: grid;
+  /* minmax(0, 1fr) para que la columna no se estire mas que la pantalla (sino aparece scroll horizontal) */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  padding: 32px 0 40px;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 9vw, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  max-width: 11ch;
+}
+
+.hero p {
+  margin-top: 12px;
+  max-width: 38ch;
+  font-size: 1.15rem;
+}
+
+/* portal verde hecho solo con gradientes */
+.portal {
+  order: -1;
+  justify-self: center;
+  width: 170px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: var(--borde);
+  box-shadow: var(--sombra);
+  /* centro brillante + anillos corridos del centro + remolino de colores.
+     como los anillos no estan centrados, al girar parece que se retuerce */
+  background:
+    radial-gradient(circle, #F7FFE9 0 7%, rgba(247, 255, 233, 0) 28%),
+    repeating-radial-gradient(circle at 46% 54%, transparent 0 11px, rgba(20, 60, 8, 0.28) 11px 17px),
+    conic-gradient(#D6F7A0, var(--verde), var(--verde-oscuro), #B8E977, var(--verde), #2E6414, #D6F7A0);
+  animation: girar 14s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* si la persona pidio menos movimiento en su sistema, el portal queda quieto */
+@media (prefers-reduced-motion: reduce) {
+  .portal {
+    animation: none;
+  }
+}
 
 
 /* buscador */
-/* TODO */
+.buscador {
+  margin-top: 24px;
+}
 
+.buscador label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
 
-/* mensajes de cargando / error / sin resultados */
-/* TODO: que tengan diseño, lo piden en la rubrica */
+.buscador__fila {
+  display: flex;
+  gap: 8px;
+}
 
-
-/* grilla de tarjetas - en mobile 1 columna */
-/* TODO */
-
-
-/* tarjeta */
-/* TODO */
-
-
-/* detalle */
-/* TODO */
+.buscador input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 18px;
+  font: inherit;
+  border: var(--borde);
+  border-radius: 999px;
+  background: var(--blanco);
+}
 
 
 /* botones */
-/* TODO: hover y focus */
+.boton {
+  padding: 12px 20px;
+  font: inherit;
+  font-weight: 700;
+  color: var(--tinta);
+  background: var(--blanco);
+  border: var(--borde);
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 var(--tinta);
+  cursor: pointer;
+}
+
+.boton--verde {
+  background: var(--verde);
+}
+
+.boton:hover {
+  background: var(--celeste);
+}
+
+.boton--verde:hover {
+  background: #A9DC62;
+}
+
+/* al apretar, el boton "se hunde" y la sombra desaparece */
+.boton:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+
+/* mensajes de cargando / error / sin resultados */
+.estado:empty {
+  display: none;
+}
+
+.estado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-bottom: 32px;
+  padding: 16px 20px;
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: var(--blanco);
+  font-weight: 700;
+}
+
+.estado p {
+  flex: 1 1 220px;
+}
+
+/* mini portal girando mientras carga */
+.estado--cargando::before {
+  content: '';
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 3px solid var(--tinta);
+  background: repeating-conic-gradient(var(--verde) 0deg 45deg, var(--verde-oscuro) 45deg 90deg);
+  animation: girar 1.2s linear infinite;
+}
+
+.estado--error {
+  background: #FFE6DD;
+  box-shadow: 5px 5px 0 var(--rojo);
+}
+
+.estado--vacio {
+  border-style: dashed;
+}
+
+
+/* titulo del listado */
+.listado h2 {
+  margin-bottom: 16px;
+  font-size: 1.8rem;
+  letter-spacing: -0.02em;
+}
+
+
+/* grilla de tarjetas - en mobile 1 columna */
+.grilla {
+  display: grid;
+  gap: 20px;
+}
+
+
+/* tarjeta - en mobile es horizontal: foto a la izquierda, datos a la derecha */
+.tarjeta {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  height: 100%;
+  overflow: hidden;
+  background: var(--blanco);
+  border: var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+.tarjeta__foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-right: var(--borde);
+}
+
+.tarjeta__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: 12px 14px;
+}
+
+.tarjeta__nombre {
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+.tarjeta__estado {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+/* puntito de color segun si esta vivo, muerto o no se sabe */
+.punto {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 2px solid var(--tinta);
+}
+
+.punto--alive {
+  background: var(--verde);
+}
+
+.punto--dead {
+  background: var(--rojo);
+}
+
+.punto--unknown {
+  background: var(--gris);
+}
+
+.tarjeta__link {
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 4px 12px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid var(--tinta);
+  border-radius: 999px;
+}
+
+.tarjeta__link:hover {
+  background: var(--celeste);
+}
 
 
 /* footer */
-/* TODO */
+.footer {
+  padding: 20px 16px;
+  background: var(--celeste);
+  border-top: var(--borde);
+  font-size: 0.95rem;
+}
 
 
 /* tablet */
 @media (min-width: 768px) {
-  /* TODO: grilla a 2-3 columnas */
+  .header {
+    padding: 14px 32px;
+  }
+
+  .contenedor {
+    padding: 0 32px 64px;
+  }
+
+  .hero {
+    padding: 48px 0 56px;
+  }
+
+  .portal {
+    width: 210px;
+  }
+
+  /* tres columnas y la tarjeta pasa a ser vertical */
+  .grilla {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .tarjeta {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .tarjeta__foto {
+    height: auto;
+    aspect-ratio: 1;
+    border-right: none;
+    border-bottom: var(--borde);
+  }
+
+  .tarjeta__cuerpo {
+    padding: 14px 16px 16px;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 32px;
+  }
 }
 
 
 /* desktop - aca tiene que haber si o si mas de una columna */
 @media (min-width: 1024px) {
-  /* TODO: grilla a 4 columnas, detalle con foto a la izq y datos a la der */
+  /* portada en dos columnas: texto a la izquierda, portal a la derecha */
+  .hero {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    padding: 64px 0 72px;
+  }
+
+  .portal {
+    order: 0;
+    width: 300px;
+    margin-right: 24px;
+  }
+
+  .buscador {
+    max-width: 520px;
+  }
+
+  .grilla {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
 }

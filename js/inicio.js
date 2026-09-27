@@ -1,20 +1,33 @@
 // pagina de inicio: listado + buscador
 
-// TODO: imports de api.js y ui.js
 import { obtenerPersonajes } from './api.js';
-
-// prueba rapida para ver que llegan los datos, despues lo saco
-obtenerPersonajes()
-  .then(personajes => console.log(personajes))
-  .catch(error => console.error(error));
+import { renderizarListado, mostrarEstado, limpiarEstado } from './ui.js';
 
 
-// TODO: agarrar form, input, lista y div de estado
+const form = document.querySelector('#form-busqueda');
+const input = document.querySelector('#input-busqueda');
+const lista = document.querySelector('#lista-personajes');
+const estado = document.querySelector('#estado');
 
 
 // carga los personajes al entrar
 async function cargarListadoInicial() {
-  // TODO: mostrar cargando, try/catch, si falla mensaje de error en pantalla (no solo consola)
+  mostrarEstado(estado, 'Abriendo el portal…', 'cargando');
+
+  try {
+    const personajes = await obtenerPersonajes();
+    renderizarListado(personajes, lista);
+    limpiarEstado(estado);
+  } catch (error) {
+    console.error(error);
+    lista.innerHTML = '';
+    mostrarEstado(
+      estado,
+      'No se pudo conectar con la API de Rick and Morty. Revisá tu conexión y volvé a intentarlo.',
+      'error',
+      cargarListadoInicial
+    );
+  }
 }
 
 
@@ -26,4 +39,4 @@ async function manejarBusqueda(evento) {
 
 // TODO: addEventListener('submit') en el form
 
-// TODO: llamar a cargarListadoInicial()
+cargarListadoInicial();
