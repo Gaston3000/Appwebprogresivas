@@ -1,73 +1,57 @@
-/* =========================================================
-   ESTILOS — enfoque MOBILE FIRST
-   Primero escribís todo para pantallas chicas (desde 320px)
-   y después AGREGÁS cambios con media queries min-width.
-   ========================================================= */
+/* estilos generales - arranco por mobile y despues agrando con media queries */
 
 
-/* ---------- 1. Variables (paleta y tipografía) ----------
-   TODO: definí tus colores y fuentes en :root con custom properties
-   (ej: --color-fondo, --color-texto, --color-acento, --fuente-titulos).
-   Así cambiás la paleta en un solo lugar. */
+/* colores y fuentes */
+/* TODO: variables en :root (fondo, texto, acento, fuentes) */
 
 
-/* ---------- 2. Reset básico ----------
-   TODO:
-   - box-sizing: border-box para todos los elementos (evita que padding "rompa" anchos)
-   - sacar margin del body
-   - img con max-width: 100% (clave para NO tener scroll horizontal) */
+/* reset */
+/* TODO: box-sizing border-box, sacar margin del body, img max-width 100% (sino aparece scroll horizontal) */
 
 
-/* ---------- 3. Base (body, tipografía, links) ---------- */
+/* base */
 /* TODO */
 
 
-/* ---------- 4. Header y nav ---------- */
-/* TODO: en mobile, logo y nav pueden ir uno debajo del otro o en fila con flexbox */
-
-
-/* ---------- 5. Buscador ---------- */
-/* TODO: input que ocupe el ancho disponible en mobile */
-
-
-/* ---------- 6. Mensajes de estado (cargando / error / sin resultados / vacío) ----------
-   La rúbrica pide que los estados vacíos y de error TENGAN DISEÑO.
-   TODO: una clase base + variantes (ej: .estado--error, .estado--vacio) */
-
-
-/* ---------- 7. Grilla de tarjetas ----------
-   TODO: display: grid. En mobile, 1 columna. */
-
-
-/* ---------- 8. Tarjeta ---------- */
-/* TODO: imagen, nombre, estado (Alive/Dead/unknown), botón "Ver detalle" */
-
-
-/* ---------- 9. Detalle ---------- */
-/* TODO: en mobile, imagen arriba y datos abajo */
-
-
-/* ---------- 10. Botones (favorito, eliminar, ver detalle) ---------- */
-/* TODO: incluí estados :hover y :focus-visible */
-
-
-/* ---------- 11. Footer ---------- */
+/* header y menu */
 /* TODO */
 
 
-/* =========================================================
-   BREAKPOINT 1 — tablet (~768px)
-   ========================================================= */
+/* buscador */
+/* TODO */
+
+
+/* mensajes de cargando / error / sin resultados */
+/* TODO: que tengan diseño, lo piden en la rubrica */
+
+
+/* grilla de tarjetas - en mobile 1 columna */
+/* TODO */
+
+
+/* tarjeta */
+/* TODO */
+
+
+/* detalle */
+/* TODO */
+
+
+/* botones */
+/* TODO: hover y focus */
+
+
+/* footer */
+/* TODO */
+
+
+/* tablet */
 @media (min-width: 768px) {
-  /* TODO: grilla a 2 o 3 columnas, header en fila, etc. */
+  /* TODO: grilla a 2-3 columnas */
 }
 
 
-/* =========================================================
-   BREAKPOINT 2 — desktop (~1024px)
-   La consigna exige layout MULTI-COLUMNA acá (se verifica a 1280px).
-   ========================================================= */
+/* desktop - aca tiene que haber si o si mas de una columna */
 @media (min-width: 1024px) {
-  /* TODO: grilla a 4 columnas, detalle con imagen a la izquierda y datos a la derecha,
-     ancho máximo del contenido centrado (max-width + margin auto) */
+  /* TODO: grilla a 4 columnas, detalle con foto a la izq y datos a la der */
 }

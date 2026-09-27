@@ -1,54 +1,28 @@
-// =========================================================
-// storage.js — TODO lo que toca localStorage vive acá.
-//
-// Recordá:
-// - localStorage solo guarda STRINGS
-//   → para guardar un array: JSON.stringify
-//   → para leerlo:          JSON.parse
-// - Si la clave no existe, getItem devuelve null (tenés que contemplarlo)
-// - Lo ves en DevTools → Application → Local Storage
-//
-// Pregunta para la defensa: ¿por qué localStorage y no sessionStorage?
-// =========================================================
+// favoritos en localStorage
+// localStorage guarda solo strings, por eso JSON.stringify para guardar y JSON.parse para leer
 
-// TODO: constante con el nombre de la clave (ej: 'favoritos'), para no escribir el string a mano en varios lados
+// TODO: constante con el nombre de la clave
 
 
-// ---------------------------------------------------------
-// Devuelve el array de favoritos (o [] si no hay nada guardado)
-// ---------------------------------------------------------
+// devuelve los favoritos o [] si no hay nada
 export function obtenerFavoritos() {
   // TODO
 }
 
 
-// ---------------------------------------------------------
-// Agrega un personaje a favoritos SIN DUPLICADOS.
-// Devuelve: true si lo agregó, false si ya estaba
-// (así la interfaz puede avisarle al usuario qué pasó)
-// ---------------------------------------------------------
+// agrega sin repetir. devuelve true si lo agrego, false si ya estaba
 export function agregarFavorito(personaje) {
-  // TODO:
-  // 1. leer los favoritos actuales
-  // 2. ¿ya existe uno con el mismo id? (pista: .some())  → return false
-  // 3. si no, agregarlo y guardar el array actualizado
-  // 4. return true
-  //
-  // Pensá: ¿guardás el personaje COMPLETO o solo algunos campos (id, name, image, status)?
+  // TODO: con .some() me fijo si ya existe ese id
 }
 
 
-// ---------------------------------------------------------
-// (ADICIONAL) Elimina un favorito por id
-// ---------------------------------------------------------
+// saca un favorito por id
 export function eliminarFavorito(id) {
-  // TODO: pista → .filter() para quedarte con todos MENOS ese id, y guardar
+  // TODO: .filter()
 }
 
 
-// ---------------------------------------------------------
-// ¿Este personaje ya está en favoritos? (útil para mostrar el botón como "Ya en favoritos")
-// ---------------------------------------------------------
+// para saber si ya esta guardado (y mostrar el boton distinto)
 export function esFavorito(id) {
   // TODO
 }

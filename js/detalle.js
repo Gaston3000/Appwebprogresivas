@@ -1,48 +1,26 @@
-// =========================================================
-// detalle.js — lógica de detalle.html
-// La página se abre como: detalle.html?id=5
-// =========================================================
+// pagina de detalle, se abre como detalle.html?id=5
 
-// TODO: imports (api.js, storage.js, ui.js)
+// TODO: imports
 
 
-// TODO: agarrar los elementos del DOM (contenedor del detalle, contenedor de estado)
+// TODO: agarrar contenedor del detalle y div de estado
 
 
-// ---------------------------------------------------------
-// Lee el id de la URL
-// ---------------------------------------------------------
+// saca el id de la url
 function obtenerIdDeLaUrl() {
-  // TODO: pista → new URLSearchParams(window.location.search) y .get('id')
-  // ¿Qué pasa si alguien entra a detalle.html sin ?id= ? Contemplalo.
+  // TODO: URLSearchParams. ver que pasa si entran sin id
 }
 
 
-// ---------------------------------------------------------
-// Dibuja el detalle completo del personaje
-// ---------------------------------------------------------
+// dibuja el detalle con todos los datos + boton de favoritos
 function renderizarDetalle(personaje) {
-  // TODO: campos sugeridos (MÁS que en la tarjeta):
-  //   image, name, status, species, type (puede venir vacío ""), gender,
-  //   origin.name, location.name, episode.length (cantidad de episodios)
-  //
-  // Incluí el botón "Agregar a favoritos" y registrale un addEventListener('click', ...)
-  //   → llama a agregarFavorito(personaje)
-  //   → si devuelve false: avisar "Ya está en favoritos" (sin duplicar)
-  //   → si devuelve true:  avisar "Agregado"
-  //   Bonus UX: si esFavorito(id) ya es true al cargar, mostrar el botón en otro estado.
+  // TODO: image, name, status, species, type, gender, origin.name, location.name, episode.length
+  // el boton llama a agregarFavorito y avisa si ya estaba
 }
 
 
-// ---------------------------------------------------------
-// Arranque de la página
-// ---------------------------------------------------------
 async function iniciar() {
-  // TODO:
-  // 1. obtener el id
-  // 2. mostrar "Cargando..."
-  // 3. try: pedir el personaje por id → renderizarDetalle → limpiar estado
-  //    catch: mensaje de error visible
+  // TODO: id -> cargando -> pedir personaje -> dibujar. con try/catch
 }
 
 

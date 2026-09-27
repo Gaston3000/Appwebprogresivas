@@ -1,47 +1,24 @@
-// =========================================================
-// ui.js — funciones que DIBUJAN cosas en el DOM.
-// Se reutilizan en las 3 páginas (por eso están separadas).
-// No hacen fetch ni tocan localStorage: solo reciben datos y los muestran.
-// =========================================================
+// funciones que dibujan cosas en pantalla, las uso en las 3 paginas
 
 
-// ---------------------------------------------------------
-// Crea el HTML de UNA tarjeta de personaje.
-// Campos sugeridos para la tarjeta: image, name, status, species
-// (el resto queda para el detalle, que tiene que mostrar MÁS campos)
-// ---------------------------------------------------------
+// arma la tarjeta de un personaje (foto, nombre, estado, especie y link al detalle)
 export function crearTarjeta(personaje) {
-  // TODO: dos formas posibles (sabé explicar la diferencia):
-  //   a) document.createElement + textContent + appendChild
-  //   b) template literal (`...`) + innerHTML
-  //
-  // El link/botón "Ver detalle" lleva a: detalle.html?id=${personaje.id}
-  // Acordate del alt en la imagen.
+  // TODO: el link va a detalle.html?id=${personaje.id}
 }
 
 
-// ---------------------------------------------------------
-// Recibe un array de personajes y un contenedor, y los dibuja todos.
-// ---------------------------------------------------------
+// dibuja todas las tarjetas en el contenedor
 export function renderizarListado(personajes, contenedor) {
-  // TODO:
-  // 1. vaciar el contenedor (si no, se acumulan resultados de búsquedas anteriores)
-  // 2. recorrer el array (forEach o map) y agregar cada tarjeta
+  // TODO: vaciar primero el contenedor asi no se acumulan las busquedas
 }
 
 
-// ---------------------------------------------------------
-// Muestra un mensaje en el contenedor de estado.
-// tipo: 'cargando' | 'error' | 'vacio'  → usalo para ponerle una clase CSS distinta
-// ---------------------------------------------------------
+// muestra un mensaje. tipo puede ser 'cargando', 'error' o 'vacio' (para la clase css)
 export function mostrarEstado(contenedor, mensaje, tipo) {
   // TODO
 }
 
 
-// ---------------------------------------------------------
-// Limpia el contenedor de estado (cuando todo salió bien)
-// ---------------------------------------------------------
 export function limpiarEstado(contenedor) {
   // TODO
 }
