@@ -1,6 +1,12 @@
 // pagina de inicio: listado + buscador
 
 // TODO: imports de api.js y ui.js
+import { obtenerPersonajes } from './api.js';
+
+// prueba rapida para ver que llegan los datos, despues lo saco
+obtenerPersonajes()
+  .then(personajes => console.log(personajes))
+  .catch(error => console.error(error));
 
 
 // TODO: agarrar form, input, lista y div de estado

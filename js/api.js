@@ -8,13 +8,22 @@
 // ojo: si la busqueda no encuentra nada la api tira 404, eso no es error de conexion,
 // es que no hay resultados. y fetch no cae en el catch con un 404, hay que mirar response.ok
 
-// TODO: constante con la url base
+const URL_BASE = 'https://rickandmortyapi.com/api/character';
 
 
 // trae la primera pagina de personajes
 export async function obtenerPersonajes() {
-  // TODO: fetch, chequear response.ok, pasar a json y devolver data.results
-  // (extra) antes fijarse si ya estan guardados en localStorage
+  // TODO (extra): antes fijarse si ya estan guardados en localStorage
+
+  const response = await fetch(URL_BASE);
+
+  // si la api responde mal (500, 404, etc) fetch no tira error solo, lo tiro yo
+  if (!response.ok) {
+    throw new Error(`Error ${response.status} al traer los personajes`);
+  }
+
+  const data = await response.json();
+  return data.results; // results es el array de 20 personajes, lo demas es info de paginas
 }
 
 
