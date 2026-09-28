@@ -381,17 +381,20 @@ a {
 }
 
 /* margin-top auto empuja los botones al fondo de la tarjeta, asi quedan todos alineados */
+/* los botones van uno abajo del otro y a lo ancho, asi todas las tarjetas quedan iguales */
 .tarjeta__acciones {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 8px;
   margin-top: auto;
   padding-top: 4px;
 }
 
 .tarjeta__link,
-.tarjeta__quitar {
-  padding: 4px 12px;
+.tarjeta__quitar,
+.tarjeta__favorito {
+  padding: 6px 12px;
+  text-align: center;
   font: inherit;
   font-weight: 700;
   color: var(--tinta);
@@ -408,6 +411,20 @@ a {
 
 .tarjeta__quitar:hover {
   background: #FFE6DD;
+}
+
+.tarjeta__favorito {
+  background: var(--verde);
+}
+
+.tarjeta__favorito:hover {
+  background: #A9DC62;
+}
+
+/* ya guardado: pasa a celeste, igual que el boton del detalle */
+.tarjeta__favorito--guardado,
+.tarjeta__favorito--guardado:hover {
+  background: var(--celeste);
 }
 
 

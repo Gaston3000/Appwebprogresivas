@@ -1,5 +1,7 @@
 // funciones que dibujan cosas en pantalla, las uso en las 3 paginas
 
+import { esFavorito } from './storage.js';
+
 
 // la api devuelve todo en ingles, esto es para mostrarlo en castellano
 export const ESTADOS = {
@@ -22,17 +24,29 @@ export function traducirEspecie(especie) {
 }
 
 
+// cambia el boton de favorito de la tarjeta segun si ya esta guardado o no
+export function marcarBotonFavorito(boton, guardado) {
+  boton.textContent = guardado ? 'En favoritos' : 'Agregar a favoritos';
+  boton.classList.toggle('tarjeta__favorito--guardado', guardado);
+}
+
+
 // arma la tarjeta de un personaje (foto, nombre, estado, especie y link al detalle)
-// en favoritos le paso conEliminar = true para que tenga el boton de quitar
+// en el listado lleva el boton de agregar a favoritos,
+// en la pagina de favoritos le paso conEliminar = true y lleva el de quitar
 export function crearTarjeta(personaje, conEliminar = false) {
   const li = document.createElement('li');
 
   // la clase del estado la uso en el css para el color del puntito
   const claseEstado = personaje.status.toLowerCase();
 
-  const botonEliminar = conEliminar
-    ? `<button type="button" class="tarjeta__quitar" data-id="${personaje.id}" aria-label="Quitar a ${personaje.name} de favoritos">Quitar</button>`
-    : '';
+  let boton;
+  if (conEliminar) {
+    boton = `<button type="button" class="tarjeta__quitar" data-id="${personaje.id}" aria-label="Quitar a ${personaje.name} de favoritos">Quitar</button>`;
+  } else {
+    const guardado = esFavorito(personaje.id);
+    boton = `<button type="button" class="tarjeta__favorito${guardado ? ' tarjeta__favorito--guardado' : ''}" data-id="${personaje.id}">${guardado ? 'En favoritos' : 'Agregar a favoritos'}</button>`;
+  }
 
   li.innerHTML = `
     <article class="tarjeta">
@@ -45,7 +59,7 @@ export function crearTarjeta(personaje, conEliminar = false) {
         </p>
         <div class="tarjeta__acciones">
           <a class="tarjeta__link" href="./detalle.html?id=${personaje.id}">Ver ficha</a>
-          ${botonEliminar}
+          ${boton}
         </div>
       </div>
     </article>

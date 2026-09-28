@@ -1,7 +1,8 @@
 // pagina de inicio: listado + buscador
 
 import { obtenerPersonajes, buscarPersonajes } from './api.js';
-import { renderizarListado, mostrarEstado, limpiarEstado } from './ui.js';
+import { agregarFavorito } from './storage.js';
+import { renderizarListado, mostrarEstado, limpiarEstado, marcarBotonFavorito } from './ui.js';
 
 
 const form = document.querySelector('#form-busqueda');
@@ -10,6 +11,15 @@ const lista = document.querySelector('#lista-personajes');
 const estado = document.querySelector('#estado');
 const titulo = document.querySelector('#titulo-listado');
 const botonVerTodos = document.querySelector('#ver-todos');
+
+// los personajes que estan en pantalla, los necesito para guardar el completo en favoritos
+let personajesMostrados = [];
+
+
+function mostrarPersonajes(personajes) {
+  personajesMostrados = personajes;
+  renderizarListado(personajes, lista);
+}
 
 
 // carga los personajes al entrar (y cuando se limpia la busqueda)
@@ -20,7 +30,7 @@ async function cargarListadoInicial() {
 
   try {
     const personajes = await obtenerPersonajes();
-    renderizarListado(personajes, lista);
+    mostrarPersonajes(personajes);
     limpiarEstado(estado);
   } catch (error) {
     console.error(error);
@@ -50,7 +60,7 @@ async function buscar(texto) {
       return;
     }
 
-    renderizarListado(resultados, lista);
+    mostrarPersonajes(resultados);
     limpiarEstado(estado);
   } catch (error) {
     console.error(error);
@@ -87,6 +97,19 @@ form.addEventListener('submit', manejarBusqueda);
 botonVerTodos.addEventListener('click', () => {
   input.value = '';
   cargarListadoInicial();
+});
+
+// agregar a favoritos desde la tarjeta: un solo listener en la lista (delegacion)
+lista.addEventListener('click', evento => {
+  const boton = evento.target.closest('.tarjeta__favorito');
+  if (!boton) return;
+
+  const id = Number(boton.dataset.id);
+  const personaje = personajesMostrados.find(p => p.id === id);
+
+  // agregarFavorito ya se fija que no este repetido
+  agregarFavorito(personaje);
+  marcarBotonFavorito(boton, true);
 });
 
 cargarListadoInicial();

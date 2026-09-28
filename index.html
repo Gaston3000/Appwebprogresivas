@@ -4,24 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Costabella Gastón — DWM3AP - 2026</title>
-
-  <!-- fuentes de google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&display=swap" rel="stylesheet">
-
   <link rel="icon" href="./img/logo.png" type="image/png">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-
   <!-- header con logo y menu, se repite en todas las paginas -->
   <header class="header">
     <a href="./index.html" class="header__logo">
       <img src="./img/logo.png" alt="" width="44" height="44">
       <span>MultiversoRickAndMorty</span>
     </a>
-
     <nav aria-label="Navegación principal">
       <ul class="nav">
         <li><a href="./index.html" aria-current="page">Inicio</a></li>
@@ -29,10 +24,8 @@
       </ul>
     </nav>
   </header>
-
   <main class="contenedor">
-
-    <!-- portada con el titulo y el buscador -->
+    <!-- portada con el titulo y buscador -->
     <section class="hero">
       <div class="hero__texto">
         <h1>El multiverso de Rick and Morty</h1>
@@ -46,14 +39,11 @@
           </div>
         </form>
       </div>
-
       <!-- el portal es solo decorativo -->
       <div class="portal" aria-hidden="true"></div>
     </section>
-
     <!-- aca aparecen los mensajes de cargando / error / sin resultados -->
     <div id="estado" class="estado" aria-live="polite"></div>
-
     <!-- listado, las tarjetas las mete el js -->
     <section class="listado" aria-labelledby="titulo-listado">
       <div class="listado__cabecera">
@@ -63,14 +53,11 @@
       </div>
       <ul id="lista-personajes" class="grilla"></ul>
     </section>
-
   </main>
-
   <footer class="footer">
     <p>Gastón Costabella — Aplicaciones Web Progresivas</p>
     <p>Turno Mañana · Comisión DWM3AP · 2026</p>
   </footer>
-
   <!-- es module asi puedo usar import/export. hay que abrirlo con live server -->
   <script type="module" src="./js/inicio.js"></script>
 </body>
