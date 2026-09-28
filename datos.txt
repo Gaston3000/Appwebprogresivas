@@ -7,5 +7,5 @@ ALUMNOS: Costabella, Gastón
 CUATRIMESTRE: 2do cuatrimestre 2026
 COMISIÓN: DWM3AP
 TURNO: Mañana
-FECHA DE ENTREGA: [completar según Campus]
+FECHA DE ENTREGA: Lunes 28 de septiembre de 2026
 URL DEL SITIO: https://gaston3000.github.io/Appwebprogresivas/
