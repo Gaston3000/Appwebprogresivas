@@ -1,30 +1,24 @@
 // pagina de favoritos, aca no se llama a la api, todo sale del localStorage
 
 import { obtenerFavoritos, eliminarFavorito } from './storage.js';
-import { renderizarListado, mostrarEstado, limpiarEstado } from './ui.js';
+import { renderizarListado } from './ui.js';
 
 
 const lista = document.querySelector('#lista-favoritos');
-const estado = document.querySelector('#estado');
 const contador = document.querySelector('#contador');
-const ilustracion = document.querySelector('#ilustracion-vacio');
+const vacio = document.querySelector('#vacio');
 
 
-// muestra los favoritos o el mensaje de que no hay ninguno
+// muestra los favoritos o el cuadro de que no hay ninguno
 function mostrarFavoritos() {
   const favoritos = obtenerFavoritos();
 
-  // el dibujo de rick y morty va solo cuando la lista esta vacia
-  ilustracion.hidden = favoritos.length > 0;
+  // el cuadro con rick y morty va solo cuando la lista esta vacia
+  vacio.hidden = favoritos.length > 0;
 
   if (favoritos.length === 0) {
     lista.innerHTML = '';
     contador.textContent = '';
-    mostrarEstado(
-      estado,
-      'Todavía no guardaste ningún personaje. Entrá a la ficha de alguno y tocá "Agregar a favoritos". <a href="./index.html">Ir al inicio</a>',
-      'vacio'
-    );
     return;
   }
 
@@ -32,7 +26,6 @@ function mostrarFavoritos() {
     ? 'Tenés 1 personaje guardado.'
     : `Tenés ${favoritos.length} personajes guardados.`;
 
-  limpiarEstado(estado);
   renderizarListado(favoritos, lista, true);
 }
 

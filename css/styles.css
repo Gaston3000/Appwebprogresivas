@@ -544,17 +544,96 @@ a {
   font-size: 1.1rem;
 }
 
-/* dibujo del estado vacio */
-.favoritos__ilustracion {
-  display: block;
-  width: min(100%, 320px);
-  height: auto;
-  margin: 0 auto;
+/* cuadro de cuando no hay favoritos: arriba la escena con el dibujo, abajo el mensaje */
+.vacio {
+  max-width: 580px;
+  margin: 8px auto 0;
+  overflow: hidden;
+  background: var(--blanco);
+  border: var(--borde);
+  border-radius: 24px;
+  box-shadow: 8px 8px 0 var(--tinta);
 }
 
-/* sin esto el display block le gana al atributo hidden y el dibujo no se esconde */
-.favoritos__ilustracion[hidden] {
+/* sin esto el display del cuadro le gana al atributo hidden y no se esconde */
+.vacio[hidden] {
   display: none;
+}
+
+.vacio__escena {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 28px;
+  overflow: hidden;
+  border-bottom: var(--borde);
+  background-color: var(--celeste);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.12) 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
+}
+
+/* el portal que queda atras de rick y morty, mismo que el de la portada */
+.vacio__escena::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  width: 72%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: var(--borde);
+  background:
+    radial-gradient(circle, #F7FFE9 0 7%, rgba(247, 255, 233, 0) 28%),
+    repeating-radial-gradient(circle at 46% 54%, transparent 0 11px, rgba(20, 60, 8, 0.28) 11px 17px),
+    conic-gradient(#D6F7A0, var(--verde), var(--verde-oscuro), #B8E977, var(--verde), #2E6414, #D6F7A0);
+  transform: translateX(-50%);
+  animation: girar-centrado 18s linear infinite;
+}
+
+@keyframes girar-centrado {
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vacio__escena::before {
+    animation: none;
+  }
+}
+
+/* el dibujo esta cortado a la altura de la cintura, asi que lo apoyo justo sobre la linea */
+.vacio__escena img {
+  position: relative;
+  display: block;
+  width: min(80%, 360px);
+  height: auto;
+}
+
+.vacio__texto {
+  padding: 24px 20px 28px;
+  text-align: center;
+}
+
+.vacio__texto h2 {
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* si se esta mostrando el cuadro vacio, centro tambien el titulo de la pagina asi queda alineado */
+.favoritos:has(.vacio:not([hidden])) .favoritos__cabecera {
+  text-align: center;
+}
+
+.vacio__texto p {
+  max-width: 40ch;
+  margin: 10px auto 22px;
+}
+
+.vacio__texto .boton {
+  display: inline-block;
+  text-decoration: none;
 }
 
 
@@ -658,9 +737,5 @@ a {
     grid-template-columns: 380px minmax(0, 1fr);
     gap: 40px;
     padding: 36px;
-  }
-
-  .favoritos__ilustracion {
-    width: 400px;
   }
 }

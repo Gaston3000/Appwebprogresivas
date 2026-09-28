@@ -35,11 +35,17 @@
         <p id="contador"></p>
       </div>
 
-      <!-- mensaje para cuando no hay nada guardado -->
-      <div id="estado" class="estado" aria-live="polite"></div>
-
-      <!-- dibujo que se ve solo cuando no hay favoritos, el js lo muestra o lo esconde -->
-      <img id="ilustracion-vacio" class="favoritos__ilustracion" src="./img/rick-y-morty.webp" alt="" width="526" height="620" hidden>
+      <!-- cuadro para cuando no hay nada guardado, el js lo muestra o lo esconde -->
+      <div id="vacio" class="vacio" hidden>
+        <div class="vacio__escena">
+          <img src="./img/rick-y-morty.webp" alt="" width="526" height="620">
+        </div>
+        <div class="vacio__texto">
+          <h2>Todavía no guardaste ningún personaje</h2>
+          <p>Entrá a la ficha de alguno y tocá "Agregar a favoritos" para tenerlo siempre a mano acá.</p>
+          <a href="./index.html" class="boton boton--verde">Explorar personajes</a>
+        </div>
+      </div>
 
       <!-- las tarjetas guardadas, cada una con su boton de quitar -->
       <ul id="lista-favoritos" class="grilla"></ul>
