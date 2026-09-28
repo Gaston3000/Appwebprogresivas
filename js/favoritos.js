@@ -7,11 +7,15 @@ import { renderizarListado, mostrarEstado, limpiarEstado } from './ui.js';
 const lista = document.querySelector('#lista-favoritos');
 const estado = document.querySelector('#estado');
 const contador = document.querySelector('#contador');
+const ilustracion = document.querySelector('#ilustracion-vacio');
 
 
 // muestra los favoritos o el mensaje de que no hay ninguno
 function mostrarFavoritos() {
   const favoritos = obtenerFavoritos();
+
+  // el dibujo de rick y morty va solo cuando la lista esta vacia
+  ilustracion.hidden = favoritos.length > 0;
 
   if (favoritos.length === 0) {
     lista.innerHTML = '';

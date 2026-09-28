@@ -544,6 +544,19 @@ a {
   font-size: 1.1rem;
 }
 
+/* dibujo del estado vacio */
+.favoritos__ilustracion {
+  display: block;
+  width: min(100%, 320px);
+  height: auto;
+  margin: 0 auto;
+}
+
+/* sin esto el display block le gana al atributo hidden y el dibujo no se esconde */
+.favoritos__ilustracion[hidden] {
+  display: none;
+}
+
 
 /* footer */
 .footer {
@@ -645,5 +658,9 @@ a {
     grid-template-columns: 380px minmax(0, 1fr);
     gap: 40px;
     padding: 36px;
+  }
+
+  .favoritos__ilustracion {
+    width: 400px;
   }
 }
