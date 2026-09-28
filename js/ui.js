@@ -1,6 +1,4 @@
-// funciones que dibujan cosas en pantalla, las uso en las 3 paginas
-// afuera solo sale el objeto Ui con sus funciones
-
+// funciones que dibujan en pantalla, las usan las 3 paginas
 const Ui = (() => {
 
   // la api devuelve todo en ingles, esto es para mostrarlo en castellano
@@ -10,7 +8,7 @@ const Ui = (() => {
     unknown: 'Desconocido'
   };
 
-  // traduzco las especies mas comunes, las demas quedan como vienen
+  // las especies mas comunes, las demas quedan como vienen
   const ESPECIES = {
     Human: 'Humano',
     Humanoid: 'Humanoide',
@@ -19,6 +17,7 @@ const Ui = (() => {
     unknown: 'Desconocida'
   };
 
+  // pasan el estado y la especie a castellano
   function traducirEstado(estado) {
     return ESTADOS[estado];
   }
@@ -34,10 +33,7 @@ const Ui = (() => {
     boton.classList.toggle('tarjeta__favorito--guardado', guardado);
   }
 
-
-  // arma la tarjeta de un personaje (foto, nombre, estado, especie y link al detalle)
-  // en el listado lleva el boton de agregar a favoritos,
-  // en la pagina de favoritos le paso conEliminar = true y lleva el de quitar
+  // arma la tarjeta de un personaje, con boton de favorito o de quitar
   function crearTarjeta(personaje, conEliminar = false) {
     const li = document.createElement('li');
 
@@ -84,8 +80,7 @@ const Ui = (() => {
   }
 
 
-  // muestra un mensaje. tipo puede ser 'cargando', 'error' o 'vacio' (para la clase css)
-  // si le paso una funcion en alReintentar, agrega un boton para volver a probar
+  // muestra un mensaje de cargando, error o vacio, con boton de reintentar si hace falta
   function mostrarEstado(contenedor, mensaje, tipo, alReintentar) {
     contenedor.className = `estado estado--${tipo}`;
     contenedor.innerHTML = `<p>${mensaje}</p>`;
@@ -101,6 +96,7 @@ const Ui = (() => {
   }
 
 
+  // borra el mensaje cuando todo salio bien
   function limpiarEstado(contenedor) {
     contenedor.className = 'estado';
     contenedor.innerHTML = '';

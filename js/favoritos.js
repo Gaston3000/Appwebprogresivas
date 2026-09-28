@@ -1,5 +1,4 @@
-// pagina de favoritos, aca no se llama a la api, todo sale del localStorage
-// usa Almacen y Ui, que se cargan antes en el html
+// pagina de favoritos, no llama a la api, todo sale del localStorage
 
 (() => {
 
@@ -29,8 +28,7 @@
   }
 
 
-  // eliminar: un solo listener en la lista y me fijo si tocaron un boton de quitar
-  // (asi no tengo que ponerle un listener a cada boton cada vez que redibujo)
+  // quitar favorito: un solo listener en la lista (delegacion de eventos)
   lista.addEventListener('click', evento => {
     const boton = evento.target.closest('.tarjeta__quitar');
     if (!boton) return;

@@ -178,8 +178,7 @@ a {
   border-radius: 50%;
   border: var(--borde);
   box-shadow: var(--sombra);
-  /* centro brillante + anillos corridos del centro + remolino de colores.
-     como los anillos no estan centrados, al girar parece que se retuerce */
+  /* brillo al centro + anillos corridos + remolino de verdes, al girar parece que se retuerce */
   background:
     radial-gradient(circle, #F7FFE9 0 7%, rgba(247, 255, 233, 0) 28%),
     repeating-radial-gradient(circle at 46% 54%, transparent 0 11px, rgba(20, 60, 8, 0.28) 11px 17px),

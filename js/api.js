@@ -1,9 +1,6 @@
 // todo lo que pide datos a la api esta aca
 
-// endpoints:
-// listado  -> https://rickandmortyapi.com/api/character
-// busqueda -> https://rickandmortyapi.com/api/character?name=rick
-// detalle  -> https://rickandmortyapi.com/api/character/1
+// endpoints: /character (listado), /character?name= (busqueda), /character/id (detalle)
 
 // igual que en storage.js: afuera solo sale el objeto Api con sus funciones
 const Api = (() => {
@@ -32,8 +29,7 @@ const Api = (() => {
   }
 
 
-  // busca por nombre, si no encuentra devuelve []
-  // ojo: si no hay resultados la api tira 404, eso no es error de conexion
+  // busca por nombre, si la api tira 404 es que no hay resultados y devuelvo []
   async function buscarPersonajes(texto) {
     // encodeURIComponent por si escriben espacios o caracteres raros
     const response = await fetch(`${URL_BASE}/?name=${encodeURIComponent(texto)}`);

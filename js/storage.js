@@ -1,7 +1,6 @@
 // localStorage guarda solo strings, por eso JSON.stringify para guardar y JSON.parse para leer
 
-// todo queda adentro de esta funcion que se ejecuta sola, y afuera solo sale el objeto Almacen
-// con las funciones que usan las otras partes. asi no quedan variables globales sueltas
+// funcion que se ejecuta sola, afuera solo sale el objeto Almacen (sin globales sueltas)
 const Almacen = (() => {
 
   const CLAVE_FAVORITOS = 'favoritos';
@@ -17,6 +16,7 @@ const Almacen = (() => {
     }
   }
 
+  // guarda un valor ya convertido a texto
   function guardar(clave, valor) {
     localStorage.setItem(clave, JSON.stringify(valor));
   }
@@ -59,8 +59,7 @@ const Almacen = (() => {
   }
 
 
-  // ---------- cache del listado ----------
-  // la primera vez guardo lo que trae la api, las siguientes lo leo de aca sin llamarla
+  // ---------- cache del listado (guarda lo que trae la api para no volver a llamarla) ----------
 
   function leerCache() {
     return leer(CLAVE_CACHE);

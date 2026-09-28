@@ -1,5 +1,4 @@
 // pagina de detalle, se abre como detalle.html?id=5
-// usa Api, Almacen y Ui, que se cargan antes en el html
 
 (() => {
 

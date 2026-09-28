@@ -1,5 +1,4 @@
 // pagina de inicio: listado + buscador
-// usa Api, Almacen y Ui, que se cargan antes en el html
 
 // todo va adentro de una funcion que se ejecuta sola, asi estas variables no quedan globales
 (() => {
